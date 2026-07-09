@@ -1,0 +1,9 @@
+# Raw Backblaze data
+q3_2025/
+q1_2026/
+*.zip
+*.csv.gz
+
+# Optional system/temp files
+.DS_Store
+__pycache__/

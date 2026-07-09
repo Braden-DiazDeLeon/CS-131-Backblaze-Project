@@ -1,0 +1,81 @@
+1. Disk size
+
+real	0m0.008s
+user	0m0.000s
+sys	0m0.005s
+2. Detailed disk size
+
+real	0m0.003s
+user	0m0.001s
+sys	0m0.004s
+3. CSV file count
+
+real	0m0.003s
+user	0m0.003s
+sys	0m0.003s
+4. Row count
+
+real	2m24.738s
+user	0m10.740s
+sys	0m35.314s
+5. Header row
+
+real	0m0.004s
+user	0m0.001s
+sys	0m0.002s
+6. Schema with column numbers
+
+real	0m0.006s
+user	0m0.007s
+sys	0m0.000s
+7. First sample rows
+
+real	0m0.009s
+user	0m0.002s
+sys	0m0.006s
+8. Last sample rows
+
+real	0m0.006s
+user	0m0.005s
+sys	0m0.003s
+9. Top drive models
+
+real	9m25.851s
+user	9m13.869s
+sys	0m52.749s
+10. Unique drive model count
+
+real	11m26.297s
+user	11m8.643s
+sys	1m3.741s
+11. Top capacities
+
+real	11m21.976s
+user	11m6.028s
+sys	1m2.487s
+12. Failure count using grep -c
+
+real	2m24.516s
+user	0m38.387s
+sys	0m19.069s
+13. Failure count using awk
+
+real	9m56.800s
+user	9m14.629s
+sys	0m41.523s
+14. Average capacity
+
+real	10m25.482s
+user	9m42.085s
+sys	0m42.488s
+15. Failure rate by model
+
+real	10m38.521s
+user	9m53.907s
+sys	0m43.820s
+16. Failure rate by quarter
+
+real	11m15.918s
+user	10m30.826s
+sys	0m43.982s
+Done. Outputs saved in outputs/.
