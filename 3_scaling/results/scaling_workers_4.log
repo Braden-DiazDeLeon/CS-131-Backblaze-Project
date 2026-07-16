@@ -1,0 +1,128 @@
+=== Creating cluster backblaze-scale-4 (4 worker[s]) ===
+Waiting on operation [projects/cs-131-499516/regions/us-west2/operations/ce65e2ab-43c3-3845-907c-281576e5f201].
+Waiting for cluster creation operation...
+WARNING: Failed to validate permissions required for default service account: '956885067348-compute@developer.gserviceaccount.com'. Cluster creation could still be successful if required permissions have been granted to the respective service accounts as mentioned in the document https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#dataproc_service_accounts_2. This could be due to Cloud Resource Manager API hasn't been enabled in your project '956885067348' before or it is disabled. Enable it by visiting 'https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview?project=956885067348'.
+WARNING: For PD-Standard without local SSDs, we strongly recommend provisioning 1TB or larger to ensure consistently high I/O performance. See https://cloud.google.com/compute/docs/disks/performance for information on disk I/O performance.
+WARNING: The firewall rules for specified network or subnetwork would allow ingress traffic from 0.0.0.0/0, which could be a security risk.
+WARNING: The specified custom staging bucket 'dataproc-staging-us-west2-956885067348-dyoaejet' is not using uniform bucket level access IAM configuration. It is recommended to update bucket to enable the same. See https://cloud.google.com/storage/docs/uniform-bucket-level-access.
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done.
+Created [https://dataproc.googleapis.com/v1/projects/cs-131-499516/regions/us-west2/clusters/backblaze-scale-4] Cluster placed in zone [us-west2-c].
+=== Submitting job (workers=4) ===
+Job [3211f8ba03a74d0899b52b876b078201] submitted.
+Waiting for job output...
+26/07/16 02:26:12 INFO SparkEnv: Registering MapOutputTracker
+26/07/16 02:26:12 INFO SparkEnv: Registering BlockManagerMaster
+26/07/16 02:26:13 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/07/16 02:26:13 INFO SparkEnv: Registering OutputCommitCoordinator
+26/07/16 02:26:14 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/07/16 02:26:14 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/07/16 02:26:14 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/07/16 02:26:15 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/07/16 02:26:16 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at backblaze-scale-4-m.c.cs-131-499516.internal./10.168.0.23:8032
+26/07/16 02:26:16 INFO AHSProxy: Connecting to Application History server at backblaze-scale-4-m.c.cs-131-499516.internal./10.168.0.23:10200
+26/07/16 02:26:18 INFO Configuration: resource-types.xml not found
+26/07/16 02:26:18 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/07/16 02:26:20 INFO YarnClientImpl: Submitted application application_1784168715613_0001
+26/07/16 02:26:21 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at backblaze-scale-4-m.c.cs-131-499516.internal./10.168.0.23:8030
+26/07/16 02:26:23 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object already exists with desired state.
+26/07/16 02:26:24 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-us-west2-956885067348-mgwb7jpj/9ee1b8d1-e2cb-4576-9034-c6ce2308b651/spark-job-history/application_1784168715613_0001.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+TOTAL_DRIVE_DAYS=60441935
+=== Top models by annualized failure rate ===
+26/07/16 02:27:37 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:37 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:37 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:37 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:45 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:46 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:46 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
++------------+--------------------+----------+--------+------------------+-----------+--------+--------------+------------+---------------+------------------+--------------+
+|manufacturer|model               |drive_days|failures|avg_capacity_bytes|afr_percent|afr_rank|mfr_drive_days|mfr_failures|mfr_afr_percent|share_of_mfr_fleet|afr_vs_mfr_avg|
++------------+--------------------+----------+--------+------------------+-----------+--------+--------------+------------+---------------+------------------+--------------+
+|Toshiba     |TOSHIBA MG08ACA16TEY|898006    |241     |1.6000900661248E13|9.7956     |1       |19904344      |755         |1.3845         |0.0451            |8.4111        |
+|Other       |WUH721816ALE6L4     |50331     |9       |1.6000900661248E13|6.5268     |2       |428482        |9           |0.7667         |0.1175            |5.7601        |
+|Seagate     |ST10000NM0086       |178317    |31      |1.0000831348736E13|6.3454     |3       |20308436      |855         |1.5367         |0.0088            |4.8087        |
+|Seagate     |ST14000NM0138       |228840    |37      |1.4000519643136E13|5.9015     |4       |20308436      |855         |1.5367         |0.0113            |4.3648        |
+|Seagate     |ST12000NM0007       |179224    |24      |1.2000138625024E13|4.8877     |5       |20308436      |855         |1.5367         |0.0088            |3.351         |
+|HGST        |HGST HUH721212ALN604|1782613   |204     |1.2000138625024E13|4.177      |6       |4908983       |378         |2.8106         |0.3631            |1.3664        |
+|Seagate     |ST24000NM002H       |1421629   |120     |2.4000277250048E13|3.081      |7       |20308436      |855         |1.5367         |0.07              |1.5443        |
+|WDC         |WDC WUH721816ALE6L0 |542643    |44      |1.6000900661248E13|2.9596     |8       |14683320      |287         |0.7134         |0.037             |2.2462        |
+|Seagate     |ST12000NM0008       |3393264   |261     |1.2000138625024E13|2.8075     |9       |20308436      |855         |1.5367         |0.1671            |1.2708        |
+|Toshiba     |TOSHIBA MG07ACA14TEY|174132    |13      |1.4000519643136E13|2.7249     |10      |19904344      |755         |1.3845         |0.0087            |1.3404        |
+|Seagate     |ST14000NM000J       |69110     |5       |1.4000519643136E13|2.6407     |11      |20308436      |855         |1.5367         |0.0034            |1.104         |
+|HGST        |HGST HUH721212ALE604|2410780   |151     |1.2000138625024E13|2.2862     |12      |4908983       |378         |2.8106         |0.4911            |-0.5244       |
+|Seagate     |ST8000NM0055        |2401059   |92      |8.001563222016E12 |1.3985     |13      |20308436      |855         |1.5367         |0.1182            |-0.1382       |
+|HGST        |HGST HUH721212ALE600|474027    |17      |1.2000138625024E13|1.309      |14      |4908983       |378         |2.8106         |0.0966            |-1.5016       |
+|Seagate     |ST8000DM002         |1464260   |52      |8.001563222016E12 |1.2962     |15      |20308436      |855         |1.5367         |0.0721            |-0.2405       |
+|Toshiba     |TOSHIBA MG08ACA16TE |1107210   |37      |1.6000900661248E13|1.2197     |16      |19904344      |755         |1.3845         |0.0556            |-0.1648       |
+|HGST        |HGST HUH728080ALE600|185906    |6       |8.001563222016E12 |1.178      |17      |4908983       |378         |2.8106         |0.0379            |-1.6326       |
+|Toshiba     |TOSHIBA MG07ACA14TA |6783775   |210     |1.4000519643136E13|1.1299     |18      |19904344      |755         |1.3845         |0.3408            |-0.2546       |
+|Seagate     |ST14000NM001G       |1917282   |59      |1.4000519643136E13|1.1232     |19      |20308436      |855         |1.5367         |0.0944            |-0.4135       |
+|Seagate     |ST12000NM001G       |2404627   |64      |1.2000138625024E13|0.9715     |20      |20308436      |855         |1.5367         |0.1184            |-0.5652       |
++------------+--------------------+----------+--------+------------------+-----------+--------+--------------+------------+---------------+------------------+--------------+
+only showing top 20 rows
+
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:47 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:51 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:52 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+26/07/16 02:27:52 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition, this can cause serious performance degradation.
+JOB_ELAPSED_SECONDS=90.84
+Job [3211f8ba03a74d0899b52b876b078201] finished successfully.
+done: true
+driverControlFilesUri: gs://dataproc-staging-us-west2-956885067348-dyoaejet/google-cloud-dataproc-metainfo/9ee1b8d1-e2cb-4576-9034-c6ce2308b651/jobs/3211f8ba03a74d0899b52b876b078201/
+driverOutputResourceUri: gs://dataproc-staging-us-west2-956885067348-dyoaejet/google-cloud-dataproc-metainfo/9ee1b8d1-e2cb-4576-9034-c6ce2308b651/jobs/3211f8ba03a74d0899b52b876b078201/driveroutput
+jobUuid: 51d31049-e830-35ba-9c8a-8444d6c3323d
+placement:
+  clusterName: backblaze-scale-4
+  clusterUuid: 9ee1b8d1-e2cb-4576-9034-c6ce2308b651
+pysparkJob:
+  args:
+  - --input
+  - gs://cs-131-499516-backblaze/backblaze/*/*/*.csv
+  - --output
+  - gs://cs-131-499516-backblaze/backblaze_out/workers_4
+  mainPythonFileUri: gs://dataproc-staging-us-west2-956885067348-dyoaejet/google-cloud-dataproc-metainfo/9ee1b8d1-e2cb-4576-9034-c6ce2308b651/jobs/3211f8ba03a74d0899b52b876b078201/staging/failure_rate_spark.py#1784168760772925
+reference:
+  jobId: 3211f8ba03a74d0899b52b876b078201
+  projectId: cs-131-499516
+status:
+  state: DONE
+  stateStartTime: '2026-07-16T02:27:57.117376Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-07-16T02:26:00.971137Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-07-16T02:26:01.060394Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-07-16T02:26:01.545419Z'
+yarnApplications:
+- memoryMbSeconds: '4705542'
+  name: backblaze_failure_rate
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://backblaze-scale-4-m.c.cs-131-499516.internal.:8088/proxy/application_1784168715613_0001/
+  vcoreSeconds: '1386'
+=== RESULT workers=4 wall_clock=122s ===
+(also grep JOB_ELAPSED_SECONDS in the log for the pure job time)
+=== Deleting cluster backblaze-scale-4 ===
+Waiting on operation [projects/cs-131-499516/regions/us-west2/operations/970de443-3124-31dd-9ab9-a8f76e8050ca].
+Waiting for cluster deletion operation...
+.......................................................................................................................................................done.
+Deleted [https://dataproc.googleapis.com/v1/projects/cs-131-499516/regions/us-west2/clusters/backblaze-scale-4].
