@@ -5,9 +5,8 @@ Raw CSVs live outside the repo (set DATA_DIR, default $HOME/backblaze):
   q3_2025/data_Q3_2025/*.csv
   q1_2026/data_Q1_2026/*.csv
 
-All profiling is driven by a set of small shell scripts plus one master
-script (scripts/run_phase1_profiling.sh) so the whole run is reproducible.
-Every command is wrapped in `time` to measure computational cost.
+everything is done via a master script so I can easily rerun everything.
+This means that I have put all commands in their own script and have a script running those.
 
 Run everything at once (from 1_profile/):
   time scripts/run_phase1_profiling.sh 2>&1 | tee outputs/run_phase1_profiling_log.txt
