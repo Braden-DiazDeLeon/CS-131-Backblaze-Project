@@ -1,0 +1,71 @@
+Phase 1 - Profiling
+Dataset: Backblaze Drive Stats, Q3 2025 + Q1 2026
+
+Raw CSVs live outside the repo (set DATA_DIR, default $HOME/backblaze):
+  q3_2025/data_Q3_2025/*.csv
+  q1_2026/data_Q1_2026/*.csv
+
+All profiling is driven by a set of small shell scripts plus one master
+script (scripts/run_phase1_profiling.sh) so the whole run is reproducible.
+Every command is wrapped in `time` to measure computational cost.
+
+Run everything at once (from 1_profile/):
+  time scripts/run_phase1_profiling.sh 2>&1 | tee outputs/run_phase1_profiling_log.txt
+
+Exact command sequence (see scripts/run_phase1_profiling.sh):
+
+FILES=("$DATA_DIR"/q3_2025/data_Q3_2025/*.csv "$DATA_DIR"/q1_2026/data_Q1_2026/*.csv)
+
+1. Disk size (du -h)
+   time du -sh "$DATA_DIR/q3_2025" "$DATA_DIR/q1_2026" > outputs/disk_size.txt
+
+2. Detailed disk size
+   time du -h --max-depth=2 "$DATA_DIR/q3_2025" "$DATA_DIR/q1_2026" | sort -h > outputs/disk_size_detailed.txt
+
+3. CSV file count
+   time find "$DATA_DIR/q3_2025" "$DATA_DIR/q1_2026" -name "*.csv" | wc -l > outputs/csv_file_count.txt
+
+4. Row count (wc -l style via awk over all files)
+   time scripts/row_count.sh "${FILES[@]}" > outputs/row_count.txt
+   # scripts/row_count.sh: awk 'FNR > 1 {count++} END {print count}' "$@"
+
+5. Header row (head)
+   time head -n 1 "$DATA_DIR/q3_2025/data_Q3_2025/2025-07-01.csv" > outputs/header.txt
+
+6. Schema with column numbers (head + tr + nl)
+   time head -n 1 <file> | tr "," "\n" | nl -ba > outputs/schema_columns.txt
+
+7. First sample rows (head + cut -d',' + column -t)
+   time head -n 6 <file> | cut -d"," -f1-5 | column -t -s"," > outputs/head_sample.txt
+
+8. Last sample rows (tail + cut -d',' + column -t)
+   time tail -n 5 <file> | cut -d"," -f1-5 | column -t -s"," > outputs/tail_sample.txt
+
+9. Top drive models (cut/awk + sort | uniq -c | sort -nr)
+   time scripts/top_models.sh "${FILES[@]}" > outputs/top_models.txt
+   # awk -F',' 'FNR>1{print $3}' | sort | uniq -c | sort -nr | head -n 20
+
+10. Unique drive model count (sort | uniq | wc -l)
+    time scripts/unique_models.sh "${FILES[@]}" > outputs/unique_models.txt
+
+11. Top capacities (sort | uniq -c | sort -nr)
+    time scripts/top_capacities.sh "${FILES[@]}" > outputs/top_capacities.txt
+
+12. Failure count using grep -c
+    time grep -hEc "^[^,]*,[^,]*,[^,]*,[^,]*,1," "${FILES[@]}" | awk '{s+=$1} END {print s}' > outputs/grep_failure_count.txt
+
+13. Failure count using awk
+    time scripts/failure_count.sh "${FILES[@]}" > outputs/failure_count.txt
+    # awk -F',' 'FNR>1 && $5==1 {failures++} END {print failures}'
+
+14. Average capacity (awk numeric aggregate)
+    time scripts/average_capacity.sh "${FILES[@]}" > outputs/average_capacity.txt
+    # awk -F',' 'FNR>1{sum+=$4;count++} END{print sum/count/1e12 " TB"}'
+
+15. Failure rate by model (awk groupBy aggregate)
+    time scripts/failure_rate_by_model.sh "${FILES[@]}" > outputs/failure_rate_by_model.csv
+
+16. Failure rate by quarter (awk groupBy aggregate)
+    time scripts/failure_rate_by_quarter.sh "${FILES[@]}" > outputs/failure_rate_by_quarter.csv
+
+All results are saved in 1_profile/outputs/.

@@ -1,0 +1,37 @@
+Phase 2 - The Breaking Point
+Dataset: Backblaze Drive Stats, Q3 2025 + Q1 2026
+
+Goal: make the "small tools break at scale" comparison explicit and reproducible.
+
+--------------------------------------------------------------------
+1. Excel
+--------------------------------------------------------------------
+Attempt: open the raw file (or one year of it) in Excel.
+Result: <FILL IN - e.g. row-cap hit at 1,048,576 rows, or file won't open>
+Evidence: screenshots/excel_failure.png
+
+--------------------------------------------------------------------
+2. pandas.read_csv() on the full file
+--------------------------------------------------------------------
+Attempt:
+  time python3 scripts/pandas_read_full.py
+Result: <FILL IN - MemoryError / killed (OOM) / wall-clock time if it finished>
+Evidence: screenshots/pandas_memory.png
+
+--------------------------------------------------------------------
+3. Same aggregation, two ways
+--------------------------------------------------------------------
+Aggregation: <FILL IN - e.g. total failures, or failure rate by model>
+
+(a) Command line:
+    <FILL IN exact command, e.g. the awk failure_count from Phase 1>
+    Result: <value>    Time: <wall clock>
+
+(b) PySpark on the whole dataset:
+    <FILL IN command, e.g. spark-submit scripts/agg_spark.py>
+    Result: <value>    Time: <wall clock>
+
+--------------------------------------------------------------------
+Notes / takeaways
+--------------------------------------------------------------------
+<FILL IN - what broke, at what size, and why the distributed approach wins>
