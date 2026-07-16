@@ -1,0 +1,45 @@
+Dataset: Backblaze Drive Stats, Q3 2025 + Q1 2026
+
+Config
+
+export PROJECT=cs-131-499516
+export REGION=us-west2
+export BUCKET=gs://cs-131-499516-backblaze
+
+gcloud config set project "$PROJECT"
+gcloud services enable dataproc.googleapis.com storage.googleapis.com
+
+Upload raw data to GCS 
+
+scripts/upload_to_gcs.sh
+creates $BUCKET and uploads ~/backblaze/q3_2025/data_Q3_2025  to $BUCKET/backblaze/q3_2025/
+~/backblaze/q1_2026/data_Q1_2026 to $BUCKET/backblaze/q1_2026/
+
+jobs/failure_rate_spark.py
+
+We use an explicit schema for the first five columns instead of relying on `inferSchema`. 
+It then transforms the Backblaze data by filtering out rows with null drive models, deriving the manufacturer from the model name, and setting invalid capacity values to null. 
+The cleaned DataFrame is stored because its reused across three different collections. 
+The main aggregation groups  by drive model to calculate drive-days, failures, average capacity, and annualized failure rate. 
+A window function ranks models by annualized failure rate using rank() ordered from highest to lowest AFR. 
+The model-level statistics are joined with manufacturer-level statistics to add context, including each model’s share of its manufacturer’s fleet and how its AFR compares with the manufacturer average. 
+The final output is written to $BUCKET/backblaze_out/workers_n/failure_rate_by_model.
+
+
+scaling experiment workers 1, 2, 4
+
+scripts/run_scaling.sh 1
+scripts/run_scaling.sh 2
+scripts/run_scaling.sh 4
+each run creates cluster then submits job then records runtime then deletes cluster
+logs saved to results/scaling_workers_n.log
+
+Results 
+workers=1   JOB_ELAPSED_SECONDS=306.23   wall_clock=341s
+workers=2   JOB_ELAPSED_SECONDS=142.1    wall_clock=181s
+workers=4   JOB_ELAPSED_SECONDS=90.84    wall_clock=122s
+
+2 workers: 2.16x
+4 workers: 3.4x
+
+Cleanup is handld by the run_scaling.sh script and can be seen in the logs
